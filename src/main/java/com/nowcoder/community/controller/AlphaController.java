@@ -1,9 +1,8 @@
 package com.nowcoder.community.controller;
 
 import com.nowcoder.community.service.AlphaService;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import com.nowcoder.community.util.CommunityUtil;
+import jakarta.servlet.http.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -105,5 +104,39 @@ public class AlphaController {
         emp.put("age",23);
         emp.put("salary",8000);
         return emp;
+    }
+
+    @RequestMapping(path="/cookie/set",method = RequestMethod.GET)
+    @ResponseBody
+    public String setCookies(HttpServletResponse response){
+        Cookie cookie =new Cookie("code", CommunityUtil.generateUUID());
+        cookie.setPath("/community/alpha");//设置生效范围
+        cookie.setMaxAge(60*10);//设置生存时间
+        response.addCookie(cookie);
+
+        return "set cookie";
+    }
+
+    @RequestMapping(path="/cookie/get",method = RequestMethod.GET)
+    @ResponseBody
+    public String getCookie(@CookieValue("code") String code){
+        System.out.println(code);
+        return "get cookie";
+    }
+
+    @RequestMapping(path="/session/set",method = RequestMethod.GET)
+    @ResponseBody
+    public String setSession(HttpSession session){
+        session.setAttribute("id","1");
+        session.setAttribute("name","Test");
+        return "set session";
+    }
+
+    @RequestMapping(path="/session/get",method = RequestMethod.GET)
+    @ResponseBody
+    public String getSession(HttpSession session){
+        System.out.println(session.getAttribute("id"));
+        System.out.println(session.getAttribute("name"));
+        return "get session";
     }
 }
