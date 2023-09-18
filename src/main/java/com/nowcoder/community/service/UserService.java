@@ -91,7 +91,7 @@ public class UserService implements CommunityConstant {
         return map;
     }
 
-    public int activation(int userId,String  code){
+    public int activation(int userId,String code){
         User user=userMapper.selectById(userId);
         if(user.getStatus()==1){
             return ACTIVATION_REPEAT;

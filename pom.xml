@@ -110,6 +110,7 @@
 					<include>**/*.css</include>
 					<include>**/*.js</include>
 					<include>**/*.png</include>
+					<include>**/*.txt</include>
 				</includes>
 			</resource>
 		</resources>

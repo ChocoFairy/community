@@ -13,7 +13,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class WebMvcConfig implements WebMvcConfigurer {
     @Autowired
     private AlphaInterceptor alphaInterceptor;
-
     @Autowired
     private LoginTicketInterceptor loginTicketInterceptor;
     @Autowired
